@@ -13,26 +13,7 @@ const loadMainCardsData = async() =>{
     displayData(post)
 });
 
-const messageBtn = document.querySelectorAll('.message-btn')
-let markCountSum = 0
-
-for(const btn of messageBtn){
-    btn.addEventListener('click', function(e){
-        const title = e.target.parentNode.parentNode.parentNode.childNodes[3].innerText;
-        const view = e.target.parentNode.parentNode.childNodes[1].childNodes[3].childNodes[3].innerText
-        markCountSum = markCountSum + 1
-        const div = document.createElement('div')
-        div.innerHTML =`
-        <div class="flex justify-between text-sm bg-white rounded-2xl p-4">
-                            <p class="text-wrap text-[#12132D] font-semibold">${title}</p>
-                            <div class="md:flex items-center"><img class="w-7 h-7" src="./images/tabler-icon-eye.svg" alt=""><p>${view}</p></div>
-                        </div>
-        
-        `
-        titleCardsContainer.appendChild(div);
-        markCount.innerText = markCountSum
-    })
-}
+messageBtn()
 
 }
 
@@ -89,6 +70,7 @@ const loadCategoryData = async(category)=>{
     post.forEach(item => {
         // console.log(item)
         displayData(item)
+        messageBtn()
     })
 
 }
@@ -103,6 +85,30 @@ const search = () =>{
 
 
 // loadCategoryData()
+
+
+const messageBtn = ()=> {
+    const messageBtn = document.querySelectorAll('.message-btn')
+let markCountSum = 0
+
+for(const btn of messageBtn){
+    btn.addEventListener('click', function(e){
+        const title = e.target.parentNode.parentNode.parentNode.childNodes[3].innerText;
+        const view = e.target.parentNode.parentNode.childNodes[1].childNodes[3].childNodes[3].innerText
+        markCountSum = markCountSum + 1
+        const div = document.createElement('div')
+        div.innerHTML =`
+        <div class="flex justify-between text-sm bg-white rounded-2xl p-4">
+                            <p class="text-wrap text-[#12132D] font-semibold">${title}</p>
+                            <div class="md:flex items-center"><img class="w-7 h-7" src="./images/tabler-icon-eye.svg" alt=""><p>${view}</p></div>
+                        </div>
+        
+        `
+        titleCardsContainer.appendChild(div);
+        markCount.innerText = markCountSum
+    })
+}
+}
 
 
 
