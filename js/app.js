@@ -35,15 +35,15 @@ const displayData = (post)=>{
                             <p class="border-b-2 border-dashed font-inter pb-3">${post.description}</p>
                             <div class="flex justify-between items-center mt-5 gap-4">
                                 <div class="flex items-center gap-4 text-sm lg:text-base">
-                                    <div class="flex items-center gap-1 lg:gap-3">
+                                    <div class="lg:flex items-center gap-1 lg:gap-3">
                                         <img src="./images/tabler-icon-message-2.svg" alt="">
                                         <p class="font-inter">${post.comment_count}</p>
                                     </div>
-                                    <div class="flex items-center gap-1 lg:gap-3">
+                                    <div class="lg:flex items-center gap-1 lg:gap-3">
                                         <img src="./images/tabler-icon-eye.svg" alt="">
                                         <p class="font-inter">${post.view_count}</p>
                                     </div>
-                                    <div class="flex items-center gap-1 lg:gap-3">
+                                    <div class="lg:flex items-center gap-1 lg:gap-3">
                                         <img src="./images/tabler-icon-clock-hour-9.svg" alt="">
                                         <p class="font-inter">${post.posted_time} min</p>
                                     </div>
