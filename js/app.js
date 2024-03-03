@@ -6,15 +6,43 @@ const loadMainCardsData = async() =>{
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts')
     const data = await res.json();
     const posts = data.posts
+    mainCardsContainer.innerHTML = '';
     // console.log(posts);
     posts.forEach(post => {
     //    console.log(post) 
+    displayData(post)
+});
 
-       const div = document.createElement('div')
+const messageBtn = document.querySelectorAll('.message-btn')
+let markCountSum = 0
+
+for(const btn of messageBtn){
+    btn.addEventListener('click', function(e){
+        const title = e.target.parentNode.parentNode.parentNode.childNodes[3].innerText;
+        const view = e.target.parentNode.parentNode.childNodes[1].childNodes[3].childNodes[3].innerText
+        markCountSum = markCountSum + 1
+        const div = document.createElement('div')
+        div.innerHTML =`
+        <div class="flex justify-between text-sm bg-white rounded-2xl p-4">
+                            <p class="text-wrap text-[#12132D] font-semibold">${title}</p>
+                            <div class="md:flex items-center"><img class="w-7 h-7" src="./images/tabler-icon-eye.svg" alt=""><p>${view}</p></div>
+                        </div>
+        
+        `
+        titleCardsContainer.appendChild(div);
+        markCount.innerText = markCountSum
+    })
+}
+
+}
+
+
+const displayData = (post)=>{
+    const div = document.createElement('div')
     div.innerHTML = `
     <div class="lg:col-span-2 bg-[#797DFC0A] p-5 lg:p-10 rounded-3xl flex gap-6">
                         <div class="w-12 h-12 relative">
-                            <div class="w-3 h-3 rounded-full bg-[red] absolute left-10 bottom-10"></div>
+                            <div id="status" class="w-3 h-3 rounded-full bg-[red] absolute left-10 bottom-10"></div>
                             <img class="rounded-xl w-full h-full" src="${post.image}" alt="">
                         </div>
                         <div class="space-y-3 flex-1">
@@ -47,37 +75,34 @@ const loadMainCardsData = async() =>{
     `
     mainCardsContainer.appendChild(div);
     
+}
 
-    
-    
-});
 
-const messageBtn = document.querySelectorAll('.message-btn')
-let markCountSum = 0
 
-for(const btn of messageBtn){
-    btn.addEventListener('click', function(e){
-        const title = e.target.parentNode.parentNode.parentNode.childNodes[3].innerText;
-        const view = e.target.parentNode.parentNode.childNodes[1].childNodes[3].childNodes[3].innerText
-        markCountSum = markCountSum + 1
-        const div = document.createElement('div')
-        div.innerHTML =`
-        <div class="flex justify-between text-sm bg-white rounded-2xl p-4">
-                            <p class="text-wrap text-[#12132D] font-semibold">${title}</p>
-                            <div class="md:flex items-center"><img class="w-7 h-7" src="./images/tabler-icon-eye.svg" alt=""><p>${view}</p></div>
-                        </div>
-        
-        `
-        titleCardsContainer.appendChild(div);
-        markCount.innerText = markCountSum
+
+const loadCategoryData = async(category)=>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${category}`)
+    const data = await res.json()
+    // console.log(data.posts)
+    const post = data.posts
+    mainCardsContainer.innerHTML = '';
+    post.forEach(item => {
+        // console.log(item)
+        displayData(item)
     })
-}
-
-
 
 }
 
 
+
+const search = () =>{
+    const inputFieldText = document.getElementById('input-field').value
+    console.log(inputFieldText)
+    loadCategoryData(inputFieldText)
+}
+
+
+// loadCategoryData()
 
 
 
