@@ -3,6 +3,10 @@ const titleCardsContainer = document.getElementById('title-card-container')
 const markCount = document.getElementById('mark-count')
 
 const loadMainCardsData = async() =>{
+    
+        loader(true)
+      
+      
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts')
     const data = await res.json();
     const posts = data.posts
@@ -19,6 +23,11 @@ messageBtn()
 
 
 const displayData = (post)=>{
+    setTimeout(() => {
+        loader()
+      }, 2000);
+      
+    
     const div = document.createElement('div')
     div.innerHTML = `
     <div class="lg:col-span-2 bg-[#797DFC0A] p-5 lg:p-10 rounded-3xl flex gap-6">
@@ -62,6 +71,7 @@ const displayData = (post)=>{
 
 
 const loadCategoryData = async(category)=>{
+  
     const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${category}`)
     const data = await res.json()
     // console.log(data.posts)
@@ -84,7 +94,7 @@ const search = () =>{
 }
 
 
-// loadCategoryData()
+
 
 
 const messageBtn = ()=> {
@@ -111,5 +121,23 @@ for(const btn of messageBtn){
 }
 
 
+const loader = (isLoading) =>{
+    const loader = document.querySelectorAll('.loader')
+    for(const i of loader){
+
+        if(isLoading){
+            i.classList.remove('hidden')
+        }else{
+            i.classList.add('hidden')
+        }
+    }
+}
+
+loader(true)
+
+
+
+
+// loadCategoryData()
 
 loadMainCardsData()
