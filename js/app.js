@@ -1,6 +1,7 @@
 const mainCardsContainer = document.getElementById('main-cards-container')
 const titleCardsContainer = document.getElementById('title-card-container')
 const markCount = document.getElementById('mark-count')
+const latestCardContainer = document.getElementById('latest-card-container')
 
 const loadMainCardsData = async() =>{
     
@@ -10,14 +11,22 @@ const loadMainCardsData = async() =>{
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts')
     const data = await res.json();
     const posts = data.posts
+
+   
+    
+
     mainCardsContainer.innerHTML = '';
     // console.log(posts);
     posts.forEach(post => {
     //    console.log(post) 
     displayData(post)
+
+    
+    
 });
 
 messageBtn()
+
 
 }
 
@@ -27,12 +36,14 @@ const displayData = (post)=>{
         loader()
       }, 2000);
       
-    
+
+
     const div = document.createElement('div')
+    
     div.innerHTML = `
     <div class="lg:col-span-2 bg-[#797DFC0A] p-5 lg:p-10 rounded-3xl flex gap-6">
                         <div class="w-12 h-12 relative">
-                            <div id="status" class="w-3 h-3 rounded-full bg-[red] absolute left-10 bottom-10"></div>
+                            <div class="status w-3 h-3 rounded-full absolute left-10 bottom-10"></div>
                             <img class="rounded-xl w-full h-full" src="${post.image}" alt="">
                         </div>
                         <div class="space-y-3 flex-1">
@@ -65,6 +76,7 @@ const displayData = (post)=>{
     `
     mainCardsContainer.appendChild(div);
     
+    
 }
 
 
@@ -80,7 +92,7 @@ const loadCategoryData = async(category)=>{
     post.forEach(item => {
         // console.log(item)
         displayData(item)
-        messageBtn()
+        messageBtn()       
     })
 
 }
@@ -133,7 +145,47 @@ const loader = (isLoading) =>{
     }
 }
 
-loader(true)
+
+// latest posts
+
+const latestPostsLoad = async() =>{
+    const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
+    const data = await res.json()
+    data.forEach(item => {
+        console.log(item)
+
+        const div = document.createElement('div')
+
+        div.innerHTML = `
+        <div class="border p-6 rounded-3xl space-y-5">
+                    <img class="rounded-2xl w-full" src="${item.cover_image}" alt="">
+                   <div class="flex gap-3">
+                        <img src="./images/333333.png" alt="">
+                        <p class="text-[#12132D99]">${item.author?.posted_date ||' No publish date'}</p>
+                   </div>
+                   <p class="text-lg font-bold">${item.title}</p>
+                   <p class="text-[#12132D99]">${item.description}</p>
+                   <div class="flex gap-3">
+                        <div class="w-10 h-10">
+                            <img class="w-full h-full rounded-full" src="${item.profile_image}" alt="">
+                        </div>
+                        <div>
+                            <p class="font-bold">${item.author.name}</p>
+                             <p class="text-sm">${item.author?.designation || 'Unknown'}</p>
+                        </div>
+                   </div>
+                </div>
+        
+        `
+        
+        latestCardContainer.appendChild(div)
+
+    })
+}
+
+latestPostsLoad()
+
+
 
 
 
