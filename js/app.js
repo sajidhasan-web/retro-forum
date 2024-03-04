@@ -7,13 +7,9 @@ const loadMainCardsData = async() =>{
     
         loader(true)
       
-      
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts')
     const data = await res.json();
     const posts = data.posts
-
-   
-    
 
     mainCardsContainer.innerHTML = '';
     // console.log(posts);
@@ -36,9 +32,6 @@ messageBtn()
 
 
 
-
-
-
 const displayData = (post)=>{
     setTimeout(() => {
         loader()
@@ -50,7 +43,7 @@ const displayData = (post)=>{
     const div = document.createElement('div')
     
     div.innerHTML = `
-    <div class="lg:col-span-2 bg-[#797DFC0A] p-5 lg:p-10 rounded-3xl flex gap-6">
+    <div class="lg:col-span-2 bg-[#797DFC0A] border border-[#797DFC] p-5 lg:p-10 rounded-3xl flex gap-6">
                         <div class="w-12 h-12 relative">
                             <div class="status w-3 h-3 rounded-full absolute left-10 bottom-10"></div>
                             <img class="rounded-xl w-full h-full" src="${post.image}" alt="">
@@ -201,25 +194,6 @@ const latestPostsLoad = async() =>{
 
     })
 }
-
-
-
-
-
-// const activeStatus = (item) =>{     
-//        const statusDiv = document.querySelector(".status");
-//         console.log('ami status')
-//         if (item === true) {
-//             statusDiv.style.backgroundColor = 'green'; 
-//             console.log('ami green')
-//         } else {
-//             statusDiv.style.backgroundColor = 'red'; 
-//             console.log('ami red')
-//         }
-    
-// }
-
-
 
 
 

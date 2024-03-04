@@ -58,16 +58,18 @@
                 </div>
               </div>
         </nav>
-        <div class="flex justify-center hidden loader">
-            <span class="loading loading-bars loading-lg"></span>
-        </div>
+       
         <!-- banner section -->
         <div class="font-mulish mt-8 lg:mt-12">
             <div class="p-[20px] space-y-4 lg:space-y-7 lg:flex py-[50px] lg:py-[100px] bg-[#12132D] justify-around bg-no-repeat bg-cover rounded-[32px]" style="background-image: url('./images/bgbanner.png');">
                 <div class="space-y-4">
                     <h1 class="text-2xl lg:text-6xl font-black text-white">Welcome to the <br> <span class="bg-gradient-to-r from-[#797DFC] to-[#797DFC00] inline-block text-transparent bg-clip-text">ReTro</span> Forum</h1>
                     <p class="text-[#FFFFFFCC] lg:text-xl font-medium">Share your favorite opinion and win and wp <br> forum coffee mug!</p>
-                    <div class="flex justify-between w-auto bg-white p-[2px] lg:p-[6px] rounded-l-[50px] rounded-r-[50px]"><input id="input-field" type="text" placeholder="Search here..." class="overflow-hidden outline-none w-auto  rounded-l-[50px]"><button onclick="search()" class="btn px-4 py-1 border-none rounded-l-[50px] rounded-r-[50px] bg-btn-main text-white">Search</button></div>
+                    <div class="flex justify-between w-auto bg-white p-[2px] lg:p-[6px] rounded-l-[50px] rounded-r-[50px]">
+                        <input id="input-field" type="text" placeholder="Search here..." class="overflow-hidden outline-none w-auto  rounded-l-[50px]">
+                        <button id="searchBtn" onclick="search()" class="btn px-4 py-1 border-none rounded-l-[50px] rounded-r-[50px] bg-btn-main text-white">Search</button>
+                    </div>
+                    <p id="err-field" class="text-orange-400"></p>
                 </div>
                 <div class="bg-white p-6 lg:p-12 rounded-[16px] lg:rounded-[32px] space-y-3 lg:space-y-6 lg:text-2xl font-medium">
                     <div class="flex justify-between gap-4 lg:gap-12">
@@ -102,7 +104,9 @@
                 <p class="font-inter lg:text-lg text-[#12132D99]">Yes, you can run unit tests and view the results directly within the app. The <br> integrated testing features allow for a streamlined .</p>
             </div>
             <div class="mt-12 lg:flex gap-6 space-y-6 lg:space-y-0">
+                
                 <div id="main-cards-container" class="flex-auto space-y-7">
+                    
                     <!-- cards -->
                     <!-- <div class="lg:col-span-2 bg-[#797DFC0A] p-5 lg:p-10 rounded-3xl flex gap-6">
                         <div class="w-12 h-12 relative">
@@ -138,7 +142,7 @@
                     </div> -->
                     
                 </div>
-                <div class="bg-[#12132D05] relative p-6 rounded-3xl flex-1 max-h-[460px] overflow-y-auto space-y-5">
+                <div class="bg-[#12132D05] relative p-6 rounded-3xl flex-1 max-h-[460px] overflow-y-auto space-y-5 border">
                    <div class="flex gap-10 justify-between">
                     <p>Title</p>
                     <div class="flex gap-3">
