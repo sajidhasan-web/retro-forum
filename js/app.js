@@ -20,9 +20,10 @@ const loadMainCardsData = async() =>{
     posts.forEach(post => {
     //    console.log(post) 
     displayData(post)
-
-    
-    
+    // console.log(post.isActive) 
+    const status = post.isActive  
+    console.log(status)
+    // activeStatus(status)
 });
 
 messageBtn()
@@ -31,13 +32,21 @@ messageBtn()
 }
 
 
+
+
+
+
+
+
+
 const displayData = (post)=>{
     setTimeout(() => {
         loader()
-      }, 2000);
-      
-
-
+    }, 2000);
+    
+    
+    
+    
     const div = document.createElement('div')
     
     div.innerHTML = `
@@ -76,7 +85,16 @@ const displayData = (post)=>{
     `
     mainCardsContainer.appendChild(div);
     
-    
+
+    const statusDiv = div.querySelector('.status');
+    if (post.isActive === true) {
+        statusDiv.style.backgroundColor = 'green';
+    } else {
+        statusDiv.style.backgroundColor = 'red';
+    }
+
+
+
 }
 
 
@@ -92,7 +110,8 @@ const loadCategoryData = async(category)=>{
     post.forEach(item => {
         // console.log(item)
         displayData(item)
-        messageBtn()       
+        messageBtn()
+        
     })
 
 }
@@ -152,7 +171,7 @@ const latestPostsLoad = async() =>{
     const res = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
     const data = await res.json()
     data.forEach(item => {
-        console.log(item)
+        // console.log(item)
 
         const div = document.createElement('div')
 
@@ -183,12 +202,29 @@ const latestPostsLoad = async() =>{
     })
 }
 
+
+
+
+
+// const activeStatus = (item) =>{     
+//        const statusDiv = document.querySelector(".status");
+//         console.log('ami status')
+//         if (item === true) {
+//             statusDiv.style.backgroundColor = 'green'; 
+//             console.log('ami green')
+//         } else {
+//             statusDiv.style.backgroundColor = 'red'; 
+//             console.log('ami red')
+//         }
+    
+// }
+
+
+
+
+
+
 latestPostsLoad()
-
-
-
-
-
 
 // loadCategoryData()
 
